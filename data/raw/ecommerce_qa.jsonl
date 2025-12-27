@@ -1,0 +1,26 @@
+{"instruction":"Is delivery free?","context":"Delivery charges depend on the total order amount. Free delivery applies only above a certain threshold.","response":"Delivery is free for orders above PKR 3000. For orders below this amount, a delivery charge of PKR 200 applies within the city."}
+{"instruction":"Is delivery always free?","context":"Delivery charges are conditional and depend on the order value.","response":"No, delivery is only free for orders above PKR 3000. Orders below this amount have a delivery charge of PKR 200 within the city."}
+{"instruction":"How long does delivery take?","context":"Delivery time varies based on whether the order is within the city or outside the city.","response":"Orders are delivered within 2–4 working days inside the city and 4–7 working days for out-of-city locations."}
+{"instruction":"Do you offer cash on delivery?","context":"The store supports multiple payment methods for customer convenience.","response":"Yes, cash on delivery is available for all orders within Pakistan."}
+{"instruction":"What payment methods do you accept?","context":"Customers can choose from several payment options at checkout.","response":"We accept cash on delivery, debit cards, credit cards, and bank transfers."}
+{"instruction":"Can I return a product?","context":"The store has a defined return policy with conditions.","response":"Yes, products can be returned within 7 days of delivery if they are unused and in original packaging."}
+{"instruction":"What is your return policy?","context":"Returns are allowed under specific conditions and within a time limit.","response":"Products can be returned within 7 days of delivery if they are unused and in original packaging."}
+{"instruction":"Do you allow product exchanges?","context":"The store provides exchange options based on product availability.","response":"Yes, exchanges are allowed within 7 days of delivery, subject to product availability."}
+{"instruction":"How can I track my order?","context":"Order tracking information is shared once an order is shipped.","response":"Once your order is shipped, a tracking number is shared via SMS or email."}
+{"instruction":"Do you ship internationally?","context":"Delivery regions are limited to specific locations.","response":"Currently, we only deliver within Pakistan."}
+{"instruction":"Is there a warranty on products?","context":"Warranty availability depends on the product.","response":"Yes, selected products come with a 6-month warranty as mentioned on the product page."}
+{"instruction":"Can I cancel my order after placing it?","context":"Order cancellation depends on the order status.","response":"Orders can be cancelled before they are dispatched."}
+{"instruction":"Can I change my delivery address after ordering?","context":"Address changes are possible only before dispatch.","response":"Yes, the delivery address can be changed before the order is dispatched."}
+{"instruction":"What are your delivery hours?","context":"Deliveries are made during fixed working hours.","response":"Deliveries are made between 9 AM and 6 PM on working days."}
+{"instruction":"Do you offer same-day delivery?","context":"Information about same-day delivery is not provided in the company policies.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Is there an emergency delivery option?","context":"The company has not specified any emergency delivery service.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Can I pick up my order from your warehouse?","context":"Pickup options are not mentioned in the company information.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Do you offer student discounts?","context":"Discount policies beyond listed offers are not specified.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Will prices drop during sales?","context":"Future pricing and sales details are not disclosed.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Can I customize a product?","context":"Product customization options are not mentioned.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Tell me about delivery.","context":"The question is vague and does not specify which delivery detail is required.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Is delivery free for an order worth exactly PKR 3000?","context":"Free delivery applies only when the order value exceeds a specific threshold.","response":"I'm sorry, I don't have that information."}
+{"instruction":"What happens if my order is delayed?","context":"The company has not provided information regarding order delays.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Can I get a refund if my order is late?","context":"Refund policies related to late orders are not specified.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Do you offer gift wrapping services?","context":"Gift wrapping options are not mentioned in the company details.","response":"I'm sorry, I don't have that information."}
+{"instruction":"Are there any hidden charges on delivery?","context":"Delivery charges are clearly stated based on order value.","response":"I'm sorry, I don't have that information."}

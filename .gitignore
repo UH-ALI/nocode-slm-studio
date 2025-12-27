@@ -1,0 +1,19 @@
+__pycache__/
+.env
+.cache/
+checkpoints/
+
+# Python
+*.py[cod]
+*$py.class
+venv/
+
+
+# Jupyter
+.ipynb_checkpoints
+
+# Large Models (Just in case, accidentally download one here)
+
+*.bin
+*.pt
+*.safetensors
