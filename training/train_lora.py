@@ -4,8 +4,9 @@ from datasets import load_dataset
 from transformers import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
-    TrainingArguments,
-    Trainer,
+    Seq2SeqTrainingArguments, # CHANGED: Specific for T5
+    Seq2SeqTrainer,           # CHANGED: Specific for T5
+    DataCollatorForSeq2Seq    # CHANGED: Handles padding correctly
 )
 from peft import LoraConfig, get_peft_model, TaskType
 
@@ -27,14 +28,15 @@ dataset = load_dataset(
 tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 model = AutoModelForSeq2SeqLM.from_pretrained(BASE_MODEL)
 
-# Format function
+# --- FIX 1: MATCH DATASET COLUMNS ---
 def format_example(example):
+    # We use 'instruction' and 'response' from your JSONL
+    # If you have context, you can add it here too
     input_text = (
         f"instruction: {example['instruction']}\n"
-        f"question: {example['question']}\n"
-        f"answer:"
+        f"response:"
     )
-    target_text = example["answer"]
+    target_text = example["response"]
 
     model_inputs = tokenizer(
         input_text,
@@ -52,6 +54,7 @@ def format_example(example):
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
+# ------------------------------------
 
 dataset = dataset.map(format_example, remove_columns=dataset.column_names)
 
@@ -68,13 +71,20 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 
-# Training arguments
-training_args = TrainingArguments(
+# --- FIX 2: USE SEQ2SEQ TRAINER ---
+# This ensures padding tokens are ignored in loss calculation
+data_collator = DataCollatorForSeq2Seq(
+    tokenizer=tokenizer,
+    model=model,
+    label_pad_token_id=-100
+)
+
+training_args = Seq2SeqTrainingArguments(
     output_dir=OUTPUT_DIR,
     num_train_epochs=config["training"]["num_train_epochs"],
     per_device_train_batch_size=config["training"]["per_device_train_batch_size"],
     gradient_accumulation_steps=config["training"]["gradient_accumulation_steps"],
-    learning_rate=config["training"]["learning_rate"],
+    learning_rate=float(config["training"]["learning_rate"]), # Cast to float just in case
     warmup_steps=config["training"]["warmup_steps"],
     logging_steps=config["training"]["logging_steps"],
     fp16=config["training"]["fp16"],
@@ -82,15 +92,16 @@ training_args = TrainingArguments(
     report_to="none",
 )
 
-trainer = Trainer(
+trainer = Seq2SeqTrainer(
     model=model,
     args=training_args,
     train_dataset=dataset,
+    data_collator=data_collator, # Add the collator
 )
+# ----------------------------------
 
 trainer.train()
 
 # Save adapters only
 model.save_pretrained(OUTPUT_DIR)
 tokenizer.save_pretrained(OUTPUT_DIR)
-
