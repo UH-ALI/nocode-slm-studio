@@ -11,7 +11,7 @@ from transformers import (
 from peft import LoraConfig, get_peft_model, TaskType
 
 # Load config
-with open("nocode-slm-studio/training/lora_config.yaml", "r") as f:
+with open("training/lora_config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
 BASE_MODEL = config["base_model"]
