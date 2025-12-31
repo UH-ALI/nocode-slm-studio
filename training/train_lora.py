@@ -29,13 +29,24 @@ tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)
 model = AutoModelForSeq2SeqLM.from_pretrained(BASE_MODEL)
 
 # --- FIX 1: MATCH DATASET COLUMNS ---
+# --- FIX 1: MATCH DATASET COLUMNS ---
 def format_example(example):
-    # We use 'instruction' and 'response' from your JSONL
-    # If you have context, you can add it here too
-    input_text = (
-        f"instruction: {example['instruction']}\n"
-        f"response:"
-    )
+    # DYNAMIC INPUT FORMATTING
+    # If context exists and is not empty, add it. Otherwise just use instruction.
+    context_text = example.get('context', "")
+    
+    if context_text:
+        input_text = (
+            f"instruction: {example['instruction']}\n"
+            f"context: {context_text}\n"
+            f"response:"
+        )
+    else:
+        input_text = (
+            f"instruction: {example['instruction']}\n"
+            f"response:"
+        )
+
     target_text = example["response"]
 
     model_inputs = tokenizer(
@@ -44,7 +55,7 @@ def format_example(example):
         padding="max_length",
         max_length=config["training"]["max_seq_length"],
     )
-
+    # ... rest of the function remains the same ... 
     labels = tokenizer(
         target_text,
         truncation=True,
