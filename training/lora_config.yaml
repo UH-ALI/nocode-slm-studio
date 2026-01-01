@@ -1,12 +1,14 @@
 base_model: google/flan-t5-small
 
 lora:
-  r: 32
-  lora_alpha: 64
+  r: 16
+  lora_alpha: 32
   lora_dropout: 0.05
   target_modules:
     - q
+    - k
     - v
+    - o
   bias: none
   task_type: SEQ_2_SEQ_LM
 
